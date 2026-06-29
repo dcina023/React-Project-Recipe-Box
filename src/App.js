@@ -35,7 +35,10 @@ function App() {
             <Recipes recipes={recipes} onAddFavorite={handleAddFavorites} />
           }
         />
-        <Route path="/favorites" element={<Favorites favorites={favorites} />} />
+        <Route
+          path="/favorites"
+          element={<Favorites favorites={favorites} />}
+        />
         <Route
           path="/discover"
           element={
