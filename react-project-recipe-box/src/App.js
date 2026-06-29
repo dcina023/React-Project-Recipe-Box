@@ -5,14 +5,14 @@ import Recipes from "./Recipes";
 function App() {
   const [recipes, setRecipes] = useState([]);
 
-useEffect(() => {
-  fetch("https://dummyjson.com/recipes")
-    .then((res) => res.json())
-    .then((data) => {
-      setRecipes(data.recipes);
-    })
-    .catch(console.error);
-}, []);
+  useEffect(() => {
+    fetch("https://dummyjson.com/recipes")
+      .then((res) => res.json())
+      .then((data) => {
+        setRecipes(data.recipes);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div>
