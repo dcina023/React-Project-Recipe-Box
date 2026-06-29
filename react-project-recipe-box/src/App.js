@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from "react";
-import Header from "./Header";
-import Recipes from "./Recipes";
+// App.jsx
+import { Routes, Route } from 'react-router-dom';
+import RecipeBox from './RecipeBox'
+
 
 function App() {
-  const [recipes, setRecipes] = useState([]);
-
-  useEffect(() => {
-    fetch("https://dummyjson.com/recipes")
-      .then((res) => res.json())
-      .then((data) => {
-        setRecipes(data.recipes);
-      })
-      .catch(console.error);
-  }, []);
-
   return (
-    <div>
-      Welcome To Your Recipe Box!
-      <Header />
-      <Recipes recipes={recipes} />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <RecipeBox />
+    </Routes>
   );
 }
-
 export default App;
+
