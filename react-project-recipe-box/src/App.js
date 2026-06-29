@@ -1,16 +1,8 @@
-// App.jsx
-import { Routes, Route } from 'react-router-dom';
-import RecipeBox from './RecipeBox'
-
+import { RouterProvider } from "react-router-dom";
+import AppRoutes from "./AppRoutes";
 
 function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <RecipeBox />
-    </Routes>
-  );
+  return <RouterProvider router={AppRoutes} />;
 }
-export default App;
 
+export default App;

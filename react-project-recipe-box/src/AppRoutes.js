@@ -1,12 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import RecipeBox from "./RecipeBox";
 import Recipes from "./Recipes";
-import Favorites from "./Favorites";
 import Discover from "./Discover";
+import Favorites from "./Favorites";
 
-const router = createBrowserRouter([
+const AppRoutes = createBrowserRouter([
   {
     path: "/",
     element: <RecipeBox />,
@@ -16,17 +14,15 @@ const router = createBrowserRouter([
         element: <Recipes />,
       },
       {
-        path: "favorites",
-        element: <Favorites />,
-      },
-      {
         path: "discover",
         element: <Discover />,
+      },
+      {
+        path: "favorites",
+        element: <Favorites />,
       },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />,
-);
+export default AppRoutes;
