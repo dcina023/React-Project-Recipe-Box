@@ -19,3 +19,26 @@ code {
 * {
   box-sizing: border-box;   
 }
+
+nav {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+  background-color: #333333;
+}
+
+nav a {
+  color: #fff3df;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+}
+
+nav a:hover {
+  color: #ffd9a8;
+}
+
+nav a.active {
+  color: #ffd9a8;
+  border-bottom: 2px solid #ffd9a8;
+}
