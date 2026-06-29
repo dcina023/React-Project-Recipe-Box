@@ -1,15 +1,17 @@
 import React from "react";
 
-function RecipeCard({ recipe }) {
+function RecipeCard({ recipe, onAddFavorite }) {
   return (
     <article>
       <h2>{recipe.name}</h2>
       <img src={recipe.image} alt={recipe.name} width="300" />
-
-      <p>
-        {recipe.cuisine} · {recipe.difficulty}
+      <p>{recipe.cuisine} · {recipe.difficulty}
       </p>
       <p>{recipe.caloriesPerServing} calories per serving</p>
+      
+      <button onClick={() => onAddFavorite(recipe)}>
+        Add to Favorites
+      </button>
 
       <h3>Ingredients</h3>
       <ul>
