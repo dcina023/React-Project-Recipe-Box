@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
-function NewRecipeForm({onAddNewRecipe}) {
-  // const { onAddNewRecipe } = useOutletContext()
+function NewRecipeForm({ onAddNewRecipe }) {
   const [formData, setFormData] = useState({
     name: "",
     image: "",
@@ -52,6 +51,7 @@ function NewRecipeForm({onAddNewRecipe}) {
   return (
     <div>
       <h1> Add your own recipes!</h1>
+
       <form onSubmit={handleSubmit}>
         <input
           name="name"

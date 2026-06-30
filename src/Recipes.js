@@ -4,9 +4,9 @@ import NewRecipeForm from "./NewRecipeForm";
 import { useOutletContext } from "react-router-dom";
 
 function Recipes() {
-  const [userRecipes, setUserRecipes] = useState([])
-  const { recipes, onAddFavorite} = useOutletContext();
-  
+  const [userRecipes, setUserRecipes] = useState([]);
+  const { onAddFavorite } = useOutletContext();
+
   function handleAddNewRecipe(newRecipe) {
     fetch("http://localhost:5000/recipes", {
       method: "POST",
@@ -27,7 +27,7 @@ function Recipes() {
   return (
     <div>
       <NewRecipeForm onAddNewRecipe={handleAddNewRecipe} />
-      {[...recipes, ...userRecipes].map((recipe) => (
+      {userRecipes.map((recipe) => (
         <RecipeCard
           key={recipe.id}
           recipe={recipe}
