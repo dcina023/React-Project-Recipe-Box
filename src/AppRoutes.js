@@ -1,21 +1,23 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import NewRecipeForm from "./NewRecipeForm";
+import ErrorPage from "./ErrorPage";
 import Discover from "./Discover";
+import Recipes from "./Recipes";
 import Favorites from "./Favorites";
 
 const AppRoutes = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
-        element: <NewRecipeForm />,
+        element: <Discover />,
       },
       {
-        path: "discover",
-        element: <Discover />,
+        path: "recipes",
+        element: <Recipes />,
       },
       {
         path: "favorites",
