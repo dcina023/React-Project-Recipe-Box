@@ -52,7 +52,7 @@ function NewRecipeForm({ onAddNewRecipe }) {
     <div>
       <h1> Add your recipes to build your own collection!</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <input
           name="name"
           value={formData.name}
@@ -69,12 +69,14 @@ function NewRecipeForm({ onAddNewRecipe }) {
         <input
           name="instructions"
           value={formData.instructions}
+          className="input-larger-section"
           onChange={handleChange}
           placeholder="Cooking instructions"
         />
         <input
           name="ingredients"
           value={formData.ingredients}
+          className="input-larger-section"
           onChange={handleChange}
           placeholder="Recipe ingredients"
         />
@@ -110,7 +112,9 @@ function NewRecipeForm({ onAddNewRecipe }) {
           <option value="Dessert">Dessert</option>
         </select>
 
-        <button type="submit">Add Recipe</button>
+        <button className="button-submit-form" type="submit">
+          Add Recipe
+        </button>
       </form>
     </div>
   );
