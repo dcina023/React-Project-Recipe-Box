@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
-function NewRecipeForm() {
-  const { onAddNewRecipe } = useOutletContext()
+function NewRecipeForm({onAddNewRecipe}) {
+  // const { onAddNewRecipe } = useOutletContext()
   const [formData, setFormData] = useState({
     name: "",
     image: "",

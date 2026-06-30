@@ -1,19 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import RecipeCard from "./RecipeCard";
 import NewRecipeForm from "./NewRecipeForm";
+import { useOutletContext } from "react-router-dom";
 
-function Recipes({ recipes, onAddFavorite, onAddNewRecipe }) {
+function Recipes() {
+  const [userRecipes, setUserRecipes] = useState([])
+  const { recipes, onAddFavorite} = useOutletContext();
+  
+  function handleAddNewRecipe(newRecipe) {
+    fetch("http://localhost:5000/recipes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newRecipe),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to save recipe");
+        return res.json();
+      })
+      .then((savedRecipe) => {
+        setUserRecipes((currentRecipes) => [...currentRecipes, savedRecipe]);
+      })
+      .catch(console.error);
+  }
   return (
     <div>
-      {recipes.map((recipe) => (
-        <React.Fragment key={recipe.id}>
-          <RecipeCard
-            recipe={recipe}
-            onAddFavorite={onAddFavorite}
-            onAddNewRecipe={onAddNewRecipe}
-          />
-          <NewRecipeForm onAddNewRecipe={onAddNewRecipe} />
-        </React.Fragment>
+      <NewRecipeForm onAddNewRecipe={handleAddNewRecipe} />
+      {[...recipes, ...userRecipes].map((recipe) => (
+        <RecipeCard
+          key={recipe.id}
+          recipe={recipe}
+          onAddFavorite={onAddFavorite}
+        />
       ))}
     </div>
   );
