@@ -50,7 +50,7 @@ function NewRecipeForm({ onAddNewRecipe }) {
 
   return (
     <div>
-      <h1> Add your own recipes!</h1>
+      <h1> Add your recipes to build your own collection!</h1>
 
       <form onSubmit={handleSubmit}>
         <input

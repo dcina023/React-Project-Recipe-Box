@@ -15,7 +15,7 @@ function Recipes() {
   }, []);
 
   function handleAddNewRecipe(newRecipe) {
-    fetch("http://localhost:5000/recipes", {
+    fetch("http://localhost:5000/favorites", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
