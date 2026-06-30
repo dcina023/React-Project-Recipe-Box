@@ -1,7 +1,9 @@
 import React from "react";
+import { useOutletContext } from "react-router-dom";
 import RecipeCard from "./RecipeCard";
 
-function Favorites({ favorites }) {
+function Favorites() {
+  const { favorites } = useOutletContext()
   return (
     <div>
       <h2>My Favorite Recipes</h2>

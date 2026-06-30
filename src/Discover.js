@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import RecipeCard from "./RecipeCard";
 
-function Discover({ recipes, onAddFavorite }) {
+function Discover() {
+  const { recipes, onAddFavorite } = useOutletContext();
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [selectedType, setSelectedType] = useState("");
 

@@ -3,7 +3,6 @@ import RecipeCard from "./RecipeCard";
 import NewRecipeForm from "./NewRecipeForm";
 
 function Recipes({ recipes, onAddFavorite, onAddNewRecipe }) {
-  let showRecipes = 4 
   return (
     <div>
       {recipes.map((recipe) => (

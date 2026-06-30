@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Header from "./Header";
-import NewRecipeForm from "./NewRecipeForm";
-import Recipes from "./Recipes";
-import Favorites from "./Favorites";
-import Discover from "./Discover";
+
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -46,23 +43,14 @@ function App() {
   return (
     <div>
       <Header />
-
-      <Routes>
-        <Route
-          path="/"
-          element={<NewRecipeForm onAddNewRecipe={handleAddNewRecipe} />}
-        />
-        <Route
-          path="/favorites"
-          element={<Favorites favorites={favorites} />}
-        />
-        <Route
-          path="/discover"
-          element={
-            <Discover recipes={recipes} onAddFavorite={handleAddFavorites} />
-          }
-        />
-      </Routes>
+      <Outlet
+        context={{
+          recipes,
+          favorites,
+          onAddNewRecipe: handleAddNewRecipe,
+          onAddFavorite: handleAddFavorites,
+        }}
+      />
     </div>
   );
 }
