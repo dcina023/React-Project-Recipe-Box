@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RecipeCard from "./RecipeCard";
 import NewRecipeForm from "./NewRecipeForm";
 import { useOutletContext } from "react-router-dom";
@@ -6,6 +6,13 @@ import { useOutletContext } from "react-router-dom";
 function Recipes() {
   const [userRecipes, setUserRecipes] = useState([]);
   const { onAddFavorite } = useOutletContext();
+
+  useEffect(() => {
+    fetch("http://localhost:5000/recipes")
+      .then((res) => res.json())
+      .then(setUserRecipes)
+      .catch(console.error);
+  }, []);
 
   function handleAddNewRecipe(newRecipe) {
     fetch("http://localhost:5000/recipes", {
