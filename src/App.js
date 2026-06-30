@@ -13,12 +13,32 @@ function App() {
       .catch(console.error);
   }, []);
 
-  function handleAddFavorites(recipeToAdd) {
-    const alreadyFavorited = favorites.find(
-      (favorite) => favorite.id === recipeToAdd.id,
-    );
+  useEffect(() => {
+    fetch("http://localhost:5000/favorites")
+      .then((res) => res.json())
+      .then(setFavorites)
+      .catch(console.error);
+  }, []);
 
-    if (!alreadyFavorited) setFavorites([...favorites, recipeToAdd]);
+  function handleAddFavorites(newFavoriteRecipe) {
+    fetch("http://localhost:5000/favorites", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newFavoriteRecipe),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to save recipe");
+        return res.json();
+      })
+      .then((savedFavoriteRecipe) => {
+        const alreadyFavorited = favorites.find(
+          (favorite) => favorite.id === newFavoriteRecipe.id,
+        );
+
+        if (!alreadyFavorited) setFavorites([...favorites, newFavoriteRecipe]);
+      });
   }
 
   return (
