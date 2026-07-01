@@ -8,14 +8,14 @@ function Recipes() {
   const { onAddFavorite } = useOutletContext();
 
   useEffect(() => {
-    fetch("http://localhost:5000/recipes")
+    fetch("https://react-project-recipe-box-backend.onrender.com/recipes")
       .then((res) => res.json())
       .then(setUserRecipes)
       .catch(console.error);
   }, []);
 
   function handleAddNewRecipe(newRecipe) {
-    fetch("http://localhost:5000/favorites", {
+    fetch("https://react-project-recipe-box-backend.onrender.com/recipes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
