@@ -21,6 +21,12 @@ function App() {
   }, []);
 
   function handleAddFavorites(newFavoriteRecipe) {
+    const alreadyFavorited = favorites.some(
+      (favorite) => favorite.id === newFavoriteRecipe.id,
+    );
+
+    if (alreadyFavorited) return;
+
     fetch("https://react-project-recipe-box-backend.onrender.com/favorites", {
       method: "POST",
       headers: {
@@ -33,12 +39,12 @@ function App() {
         return res.json();
       })
       .then((savedFavoriteRecipe) => {
-        const alreadyFavorited = favorites.find(
-          (favorite) => favorite.id === newFavoriteRecipe.id,
-        );
-
-        if (!alreadyFavorited) setFavorites([...favorites, newFavoriteRecipe]);
-      });
+        setFavorites((currentFavorites) => [
+          ...currentFavorites,
+          savedFavoriteRecipe,
+        ]);
+      })
+      .catch(console.error);
   }
 
   return (
