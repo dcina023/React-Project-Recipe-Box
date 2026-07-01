@@ -1,6 +1,6 @@
 import React from "react";
 
-function RecipeCard({ recipe, onAddFavorite }) {
+function RecipeCard({ recipe, onAddFavorite, onDeleteRecipe }) {
   return (
     <article>
       <h2>{recipe.name}</h2>
@@ -24,6 +24,9 @@ function RecipeCard({ recipe, onAddFavorite }) {
           <li key={instruction}>{instruction}</li>
         ))}
       </ol>
+      {onDeleteRecipe && (
+        <button onClick={() => onDeleteRecipe(recipe.id)}>Delete Recipe</button>
+      )}
     </article>
   );
 }

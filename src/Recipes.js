@@ -34,6 +34,29 @@ function Recipes() {
       })
       .catch(console.error);
   }
+
+  function handleDeleteRecipe(id) {
+    console.log(id, "ID");
+    fetch(
+      `https://react-project-recipe-box-backend.onrender.com/recipes/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to delete recipe");
+        return res.json();
+      })
+      .then(() => {
+        setUserRecipes((prevUserRecipes) =>
+          prevUserRecipes.filter((userRecipe) => userRecipe.id !== id),
+        );
+      })
+      .catch(console.error);
+  }
+
   return (
     <div>
       <NewRecipeForm onAddNewRecipe={handleAddNewRecipe} />
@@ -42,6 +65,7 @@ function Recipes() {
           key={recipe.id}
           recipe={recipe}
           onAddFavorite={onAddFavorite}
+          onDeleteRecipe={handleDeleteRecipe}
         />
       ))}
     </div>
