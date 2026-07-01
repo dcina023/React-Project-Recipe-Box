@@ -1,42 +1,68 @@
-# React-Project-Frontend-Repo
+# Online Recipe Box
 
-## Online Recipe-Box
+Online Recipe Box is a full-stack recipe application where users can browse recipes, discover new meal ideas, add their own recipes, and save favorites.
 
-### My app is a Recipe Box, a clean digital space where users can browse recipes, discover new meal ideas, add their own recipes, and save favorites. I am a big foodie and I wanted to continue to showcase different interests while still practicing core React concepts like components, state, props, forms, routing, and CRUD functionality. 
+As a food enthusiast, I created this project to showcase one of my interests while practicing core React concepts such as components, state, props, forms, routing, filtering, and CRUD functionality.
 
-### 5 components:
-### - NavBar
-### - Header
-### - RecipeList
-### - RecipeCard
-### - AddRecipeForm
+## Live Application
 
-### Potential extra components
+- [Frontend](https://react-project-recipe-box.onrender.com/)
+- [Backend API](https://react-project-recipe-box-backend.onrender.com/)
 
-### - SearchBar
-### - CategoryFilter
+> The application is hosted on Render, so it may take a moment to load after a period of inactivity.
 
-### what are the 3 client side routes?
-  ### /recipes - Home/dashboard for browing featured/recent recipes
-  ### /favorites - View saved/favorited recipes (your cook "book")
-  ### /discover - explore all recipes, filter them by category, and add your own to site via side bar form. 
+## Features
 
-### Potential obstacles:
-### Deciding where state should live
-### Keeping discover and favorites page clearly different
+Users can:
 
+- Discover recipes shared by other users
+- Filter recipes by meal type and cooking difficulty
+- View recipe details
+- Add recipes to their personal recipe collection
+- Favorite any recipe
+- View favorited recipes in a dedicated collection
+- Access their recipes and favorites between visits
 
+## Client-Side Routes
 
-### As a user, I can search recipes by name or ingredient.
+| Route | Description |
+|---|---|
+| `/discover` | Home dashboard where users can discover and filter recipes shared by others |
+| `/recipes` | Personal recipe collection where a user can add their own recipes through a form and build their personal cook book |
+| `/favorites` | Collection containing all recipes the user has favorited |
 
-### As a user, I can filter by cuisine, dietary preference, or cooking time.
+## User Stories
 
-### As a user, I can open to view ingredients and instructions.
+- As a user, I can discover recipes shared by other users.
+- As a user, I can filter recipes by cooking difficulty and meal type.
+- As a user, I can view the details of a recipe.
+- As a user, I can add my own recipes to my personal collection.
+- As a user, I can favorite any recipe.
+- As a user, I can view all my favorited recipes on the Favorites page.
+- As a user, my recipes and favorites persist between visits.
 
-### As a user, I can create, edit, and delete my own recipes.
+## Components
 
-### As a user, I can favorite any recipe.
+- `NavBar`
+- `Header`
+- `Recipes`
+- `RecipeCard`
+- `AddNewRecipeForm`
+- `Discover`
+- `Favorites`
 
-### As a user, I can browse and search my favorite collection.
+## Challenges
 
-### As a user, my recipes and favorites persist between visits.
+Some of the main challenges encountered during development included:
+
+- Deciding where shared state should live
+- Keeping the Discover and Favorites pages visually and functionally distinct
+- Synchronizing frontend state with persistent backend data
+- Managing recipe creation and favorite functionality across multiple routes
+
+## Future Improvements
+
+- Allow users to edit and delete their own recipes
+- Add recipe search
+- Support recipe images uploaded by users
+- Add ingredient-based filtering
