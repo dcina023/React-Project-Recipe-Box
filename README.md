@@ -1,42 +1,45 @@
-# React-Project-Frontend-Repo
+# Online Recipe Box
 
-## Online Recipe-Box
+Online Recipe Box is a full-stack recipe application for discovering meal ideas, creating recipes, and building a collection of favorites.
 
-### My app is a Recipe Box, a clean digital space where users can browse recipes, discover new meal ideas, add their own recipes, and save favorites. I am a big foodie and I wanted to continue to showcase different interests while still practicing core React concepts like components, state, props, forms, routing, and CRUD functionality. 
+## Live Application
 
-### 5 components:
-### - NavBar
-### - Header
-### - RecipeList
-### - RecipeCard
-### - AddRecipeForm
+- [Open Online Recipe Box](https://react-project-recipe-box.onrender.com/)
+- [View the Backend API](https://react-project-recipe-box-backend.onrender.com/)
 
-### Potential extra components
+> The application is hosted on Render and may take a moment to load after a period of inactivity.
 
-### - SearchBar
-### - CategoryFilter
+## How to Use the Application
 
-### what are the 3 client side routes?
-  ### /recipes - Home/dashboard for browing featured/recent recipes
-  ### /favorites - View saved/favorited recipes (your cook "book")
-  ### /discover - explore all recipes, filter them by category, and add your own to site via side bar form. 
+### Discover Recipes
 
-### Potential obstacles:
-### Deciding where state should live
-### Keeping discover and favorites page clearly different
+1. Open the application to visit the Discover page.
+2. Browse the available recipe cards.
+3. Filter recipes by meal type or cooking difficulty.
+4. View a recipes details underneath recipe image.
+5. Use the favorite option to add a recipe to your Favorites collection.
+
+### Add a Recipe
+
+1. Select **Recipes** from the navigation bar.
+2. View the new-recipe form at top of the page.
+3. Enter the requested recipe information.
+4. Submit the form.
+5. View the new recipe in the My Recipes collection.
+
+### View Favorites
+
+1. Select **Favorites** from the navigation bar.
+2. Browse the recipes you previously favorited.
+
+## Application Pages
+
+| Route | Purpose |
+|---|---|
+| `/discover` | Discover and filter available recipes |
+| `/recipes` | View the My Recipes collection and add recipes |
+| `/favorites` | View favorited recipes |
 
 
 
-### As a user, I can search recipes by name or ingredient.
 
-### As a user, I can filter by cuisine, dietary preference, or cooking time.
-
-### As a user, I can open to view ingredients and instructions.
-
-### As a user, I can create, edit, and delete my own recipes.
-
-### As a user, I can favorite any recipe.
-
-### As a user, I can browse and search my favorite collection.
-
-### As a user, my recipes and favorites persist between visits.
