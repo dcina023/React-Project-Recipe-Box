@@ -1,8 +1,6 @@
 import React from "react";
-import { Outlet, useOutletContext } from "react-router-dom";
 
 function RecipeCard({ recipe, onAddFavorite }) {
-  console.log(recipe, "WHAT JUST HAPPENED?")
   return (
     <article>
       <h2>{recipe.name}</h2>
@@ -11,10 +9,11 @@ function RecipeCard({ recipe, onAddFavorite }) {
         {recipe.cuisine} · {recipe.difficulty}
       </p>
       <p>{recipe.caloriesPerServing} calories per serving</p>
-      <button onClick={() => onAddFavorite(recipe)}>Add to Favorites</button>
+      {onAddFavorite && (
+        <button onClick={() => onAddFavorite(recipe)}>Add to Favorites</button>
+      )}
       <h3>Ingredients</h3>
       <ul>
-        console.log("RecipeCard recipe:", recipe);
         {recipe.ingredients.map((ingredient) => (
           <li key={ingredient}>{ingredient}</li>
         ))}
