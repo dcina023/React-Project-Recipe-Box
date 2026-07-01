@@ -14,14 +14,14 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/favorites")
+    fetch("https://react-project-recipe-box-backend.onrender.com/favorites")
       .then((res) => res.json())
       .then(setFavorites)
       .catch(console.error);
   }, []);
 
   function handleAddFavorites(newFavoriteRecipe) {
-    fetch("http://localhost:5000/favorites", {
+    fetch("https://react-project-recipe-box-backend.onrender.com/favorites", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
