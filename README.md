@@ -66,3 +66,4 @@ Some of the main challenges encountered during development included:
 - Add recipe search
 - Support recipe images uploaded by users
 - Add ingredient-based filtering
+
