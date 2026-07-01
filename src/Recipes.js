@@ -36,7 +36,6 @@ function Recipes() {
   }
 
   function handleDeleteRecipe(id) {
-    console.log(id, "ID");
     fetch(
       `https://react-project-recipe-box-backend.onrender.com/recipes/${id}`,
       {
