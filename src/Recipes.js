@@ -9,7 +9,10 @@ function Recipes() {
 
   useEffect(() => {
     fetch("https://react-project-recipe-box-backend.onrender.com/recipes")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to retrieve saved recipes");
+        return res.json();
+      })
       .then(setUserRecipes)
       .catch(console.error);
   }, []);

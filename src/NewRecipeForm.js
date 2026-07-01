@@ -3,6 +3,7 @@ import { useOutletContext } from "react-router-dom";
 
 function NewRecipeForm({ onAddNewRecipe }) {
   const [formData, setFormData] = useState({
+    id: "",
     name: "",
     image: "",
     instructions: "",
@@ -38,6 +39,7 @@ function NewRecipeForm({ onAddNewRecipe }) {
     onAddNewRecipe(newRecipe);
 
     setFormData({
+      id: "",
       name: "",
       image: "",
       instructions: "",
