@@ -3,13 +3,13 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 
 function App() {
-  const [recipes, setRecipes] = useState([]);
+  const [externalRecipes, setExternalRecipes] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     fetch("https://dummyjson.com/recipes")
       .then((res) => res.json())
-      .then((data) => setRecipes(data.recipes))
+      .then((data) => setExternalRecipes(data.recipes))
       .catch(console.error);
   }, []);
 
@@ -52,7 +52,7 @@ function App() {
       <Header />
       <Outlet
         context={{
-          recipes,
+          externalRecipes,
           favorites,
           onAddFavorite: handleAddFavorites,
         }}

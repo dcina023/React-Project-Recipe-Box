@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import RecipeCard from "./RecipeCard";
 
 function Favorites() {
-  const { favorites } = useOutletContext()
+  const { favorites } = useOutletContext();
   return (
     <div>
       <h2>My Favorite Recipes</h2>

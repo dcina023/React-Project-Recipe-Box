@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useOutletContext } from "react-router-dom";
 
 function NewRecipeForm({ onAddNewRecipe }) {
   const [formData, setFormData] = useState({
@@ -38,6 +37,7 @@ function NewRecipeForm({ onAddNewRecipe }) {
     onAddNewRecipe(newRecipe);
 
     setFormData({
+      id: "",
       name: "",
       image: "",
       instructions: "",
@@ -53,65 +53,82 @@ function NewRecipeForm({ onAddNewRecipe }) {
       <h1> Add your recipes to build your own collection!</h1>
 
       <form className="form" onSubmit={handleSubmit}>
-        <input
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Recipe name"
-        />
+        <label>
+          Recipe Name:
+          <input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </label>
 
-        <input
-          name="image"
-          value={formData.image}
-          onChange={handleChange}
-          placeholder="Image URL"
-        />
-        <input
-          name="instructions"
-          value={formData.instructions}
-          className="input-larger-section"
-          onChange={handleChange}
-          placeholder="Cooking instructions"
-        />
-        <input
-          name="ingredients"
-          value={formData.ingredients}
-          className="input-larger-section"
-          onChange={handleChange}
-          placeholder="Recipe ingredients"
-        />
+        <label>
+          Recipe Image:
+          <input
+            name="image"
+            value={formData.image}
+            onChange={handleChange}
+          />
+        </label>
 
-        <input
-          name="cuisine"
-          value={formData.cuisine}
-          onChange={handleChange}
-          placeholder="Cuisine"
-        />
+        <label>
+          Recipe Instructions:
+          <input
+            name="instructions"
+            value={formData.instructions}
+            className="input-larger-section"
+            onChange={handleChange}
+          />
+        </label>
 
-        <select
-          name="difficulty"
-          value={formData.difficulty}
-          onChange={handleChange}
-        >
-          <option value="">Select difficulty</option>
-          <option value="Easy">Easy</option>
-          <option value="Medium">Medium</option>
-          <option value="Hard">Hard</option>
-        </select>
+        <label>
+          Recipe Ingredients:
+          <input
+            name="ingredients"
+            value={formData.ingredients}
+            className="input-larger-section"
+            onChange={handleChange}
+          />
+        </label>
 
-        <select
-          name="mealType"
-          value={formData.mealType}
-          onChange={handleChange}
-        >
-          <option value="">Select meal type</option>
-          <option value="Breakfast">Breakfast</option>
-          <option value="Lunch">Lunch</option>
-          <option value="Dinner">Dinner</option>
-          <option value="Snack">Snack</option>
-          <option value="Dessert">Dessert</option>
-        </select>
+        <label>
+          Cuisine:
+          <input
+            name="cuisine"
+            value={formData.cuisine}
+            onChange={handleChange}
+          />
+        </label>
 
+        <label>
+          Difficult Level:
+          <select
+            name="difficulty"
+            value={formData.difficulty}
+            onChange={handleChange}
+          >
+            <option value="">Select difficulty</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+        </label>
+
+        <label>
+          Meal Type:
+          <select
+            name="mealType"
+            value={formData.mealType}
+            onChange={handleChange}
+          >
+            <option value="">Select meal type</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Snack">Snack</option>
+            <option value="Dessert">Dessert</option>
+          </select>
+        </label>
         <button className="button-submit-form" type="submit">
           Add Recipe
         </button>

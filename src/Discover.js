@@ -3,15 +3,17 @@ import { useOutletContext } from "react-router-dom";
 import RecipeCard from "./RecipeCard";
 
 function Discover() {
-  const { recipes, onAddFavorite } = useOutletContext();
+  const { externalRecipes, onAddFavorite } = useOutletContext();
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [selectedType, setSelectedType] = useState("");
 
-  const difficulties = [...new Set(recipes.map((recipe) => recipe.difficulty))];
+  const difficulties = [
+    ...new Set(externalRecipes.map((recipe) => recipe.difficulty)),
+  ];
 
-  const mealTypes = [...new Set(recipes.flatMap((recipe) => recipe.mealType))];
+  const mealTypes = [...new Set(externalRecipes.flatMap((recipe) => recipe.mealType))];
 
-  const filteredRecipes = recipes.filter((recipe) => {
+  const filteredRecipes = externalRecipes.filter((recipe) => {
     const matchesDifficulty =
       selectedDifficulty ? recipe.difficulty === selectedDifficulty : true;
 
