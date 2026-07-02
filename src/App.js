@@ -3,19 +3,14 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 
 function App() {
-  const [externalRecipes, setExternalRecipes] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    fetch("https://dummyjson.com/recipes")
-      .then((res) => res.json())
-      .then((data) => setExternalRecipes(data.recipes))
-      .catch(console.error);
-  }, []);
-
-  useEffect(() => {
     fetch("https://react-project-recipe-box-backend.onrender.com/favorites")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to retrieve data!");
+        return res.json();
+      })
       .then(setFavorites)
       .catch(console.error);
   }, []);
@@ -52,7 +47,6 @@ function App() {
       <Header />
       <Outlet
         context={{
-          externalRecipes,
           favorites,
           onAddFavorite: handleAddFavorites,
         }}

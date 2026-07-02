@@ -1,5 +1,3 @@
-
-
 function ErrorPage(props) {
   return (
     <div className={"error-page"}>
