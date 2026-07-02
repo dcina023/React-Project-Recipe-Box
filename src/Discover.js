@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import RecipeCard from "./RecipeCard";
 
 function Discover() {
-  const { externalRecipes, onAddFavorite } = useOutletContext();
+  const [externalRecipes, setExternalRecipes] = useState([]);
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [selectedType, setSelectedType] = useState("");
 
+  const { onAddFavorite } = useOutletContext();
+
+   useEffect(() => {
+      fetch("https://dummyjson.com/recipes")
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to retrieve data!");
+          return res.json();
+        })
+        .then((data) => setExternalRecipes(data.recipes))
+        .catch(console.error);
+    }, []);
+  
   const difficulties = [
     ...new Set(externalRecipes.map((recipe) => recipe.difficulty)),
   ];
