@@ -4,6 +4,7 @@ function NewRecipeForm({ onAddNewRecipe }) {
   const [formData, setFormData] = useState({
     name: "",
     image: "",
+    caloriesPerServing: "",
     instructions: "",
     ingredients: "",
     cuisine: "",
@@ -27,6 +28,7 @@ function NewRecipeForm({ onAddNewRecipe }) {
       id: crypto.randomUUID(),
       name: formData.name,
       image: formData.image,
+      caloriesPerServing: formData.caloriesPerServing,
       instructions: [formData.instructions],
       ingredients: [formData.ingredients],
       cuisine: formData.cuisine,
@@ -40,6 +42,7 @@ function NewRecipeForm({ onAddNewRecipe }) {
       id: "",
       name: "",
       image: "",
+      caloriesPerServing: "",
       instructions: "",
       ingredients: "",
       cuisine: "",
@@ -56,47 +59,68 @@ function NewRecipeForm({ onAddNewRecipe }) {
         <label>
           Recipe Name:
           <input
+            type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
+            required
           />
         </label>
 
         <label>
           Recipe Image:
           <input
+            type="url"
             name="image"
             value={formData.image}
             onChange={handleChange}
+            required
+          />
+        </label>
+
+        <label>
+          Calories per serving:
+          <input
+            type="text"
+            name="caloriesPerServing"
+            value={formData.caloriesPerServing}
+            onChange={handleChange}
+            required
           />
         </label>
 
         <label>
           Recipe Instructions:
           <input
+            type="text"
             name="instructions"
             value={formData.instructions}
             className="input-larger-section"
             onChange={handleChange}
+            required
           />
         </label>
 
         <label>
           Recipe Ingredients:
           <input
+            type="text"
             name="ingredients"
             value={formData.ingredients}
             className="input-larger-section"
             onChange={handleChange}
+            required
           />
         </label>
 
         <label>
           Cuisine:
           <input
+            type="text"
             name="cuisine"
             value={formData.cuisine}
             onChange={handleChange}
+            required
           />
         </label>
 
@@ -106,6 +130,7 @@ function NewRecipeForm({ onAddNewRecipe }) {
             name="difficulty"
             value={formData.difficulty}
             onChange={handleChange}
+            required
           >
             <option value="">Select difficulty</option>
             <option value="Easy">Easy</option>
@@ -120,6 +145,7 @@ function NewRecipeForm({ onAddNewRecipe }) {
             name="mealType"
             value={formData.mealType}
             onChange={handleChange}
+            required
           >
             <option value="">Select meal type</option>
             <option value="Breakfast">Breakfast</option>
