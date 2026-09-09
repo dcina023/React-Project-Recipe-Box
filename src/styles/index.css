@@ -125,7 +125,7 @@ textarea {
   resize: vertical;
 }
 
-#button-submit-form {
+.button-submit-form {
   width: 100%; 
   max-width: 160px;
   height: 46px;
@@ -142,13 +142,13 @@ textarea {
   transition: all 0.2s ease;
 }
 
-#button-submit-form:hover {
+.button-submit-form:hover {
   background-color: #237a28;
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(44, 151, 50, 0.3);
 }
 
-#button-submit-form:active {
+.button-submit-form:active {
   transform: translateY(0);
 }
 
