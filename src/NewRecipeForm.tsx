@@ -1,68 +1,74 @@
-import React, { useState } from "react";
+import { useForm } from "react-hook-form"
 
-function NewRecipeForm({ onAddNewRecipe }) {
-  const [formData, setFormData] = useState({
+type FormFields = {
+  name: string;
+  image: string;
+  caloriesPerServing: number;
+  instructions: string;
+  ingredients: string;
+  cuisine: string;
+  difficulty: string;
+  mealType: string;
+};
+
+type Recipe = {
+  name: string;
+  image: string;
+  caloriesPerServing: number;
+  instructions: string[];
+  ingredients: string[];
+  cuisine: string;
+  difficulty: string;
+  mealType: string[];
+};
+
+type NewRecipeFormProps = {
+  onAddNewRecipe: (recipe: Recipe ) => void
+};
+function NewRecipeForm({ onAddNewRecipe }: NewRecipeFormProps) {
+  const {
+     register,
+    handleSubmit,
+    reset,
+   } = useForm<FormFields>({
+    defaultValues: {
     name: "",
     image: "",
-    caloriesPerServing: "",
+    caloriesPerServing: 0,
     instructions: "",
     ingredients: "",
     cuisine: "",
     difficulty: "",
     mealType: "",
-  });
+    }
+   });
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    const newRecipe = {
-      id: crypto.randomUUID(),
-      name: formData.name,
-      image: formData.image,
-      caloriesPerServing: formData.caloriesPerServing,
-      instructions: [formData.instructions],
-      ingredients: [formData.ingredients],
-      cuisine: formData.cuisine,
-      difficulty: formData.difficulty,
-      mealType: [formData.mealType],
+  
+function onSubmit(formValues: FormFields) {
+    const newRecipe: Recipe  = {
+      name: formValues.name,
+      image: formValues.image,
+      caloriesPerServing: formValues.caloriesPerServing,
+      instructions: [formValues.instructions],
+      ingredients: [formValues.ingredients],
+      cuisine: formValues.cuisine,
+      difficulty: formValues.difficulty,
+      mealType: [formValues.mealType],
     };
 
     onAddNewRecipe(newRecipe);
-
-    setFormData({
-      id: "",
-      name: "",
-      image: "",
-      caloriesPerServing: "",
-      instructions: "",
-      ingredients: "",
-      cuisine: "",
-      difficulty: "",
-      mealType: "",
-    });
+    reset();
   }
 
   return (
     <div>
       <h1> Add your recipes to build your own collection!</h1>
-
-      <form className="form" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label>
           Recipe Name:
           <input
+            {...register("name")}
             type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
             required
           />
         </label>
@@ -70,10 +76,8 @@ function NewRecipeForm({ onAddNewRecipe }) {
         <label>
           Recipe Image:
           <input
+            {...register("image")}
             type="url"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
             required
           />
         </label>
@@ -81,10 +85,8 @@ function NewRecipeForm({ onAddNewRecipe }) {
         <label>
           Calories per serving:
           <input
+            {...register("caloriesPerServing")}
             type="text"
-            name="caloriesPerServing"
-            value={formData.caloriesPerServing}
-            onChange={handleChange}
             required
           />
         </label>
@@ -92,11 +94,9 @@ function NewRecipeForm({ onAddNewRecipe }) {
         <label>
           Recipe Instructions:
           <input
+            {...register("instructions")}
             type="text"
             name="instructions"
-            value={formData.instructions}
-            className="input-larger-section"
-            onChange={handleChange}
             required
           />
         </label>
@@ -104,11 +104,9 @@ function NewRecipeForm({ onAddNewRecipe }) {
         <label>
           Recipe Ingredients:
           <input
+            {...register("ingredients")}
             type="text"
             name="ingredients"
-            value={formData.ingredients}
-            className="input-larger-section"
-            onChange={handleChange}
             required
           />
         </label>
@@ -116,10 +114,9 @@ function NewRecipeForm({ onAddNewRecipe }) {
         <label>
           Cuisine:
           <input
+            {...register("cuisine")}
             type="text"
             name="cuisine"
-            value={formData.cuisine}
-            onChange={handleChange}
             required
           />
         </label>
@@ -127,9 +124,8 @@ function NewRecipeForm({ onAddNewRecipe }) {
         <label>
           Difficult Level:
           <select
+            {...register("difficulty")}
             name="difficulty"
-            value={formData.difficulty}
-            onChange={handleChange}
             required
           >
             <option value="">Select difficulty</option>
@@ -142,9 +138,8 @@ function NewRecipeForm({ onAddNewRecipe }) {
         <label>
           Meal Type:
           <select
+            {...register("mealType")}
             name="mealType"
-            value={formData.mealType}
-            onChange={handleChange}
             required
           >
             <option value="">Select meal type</option>
