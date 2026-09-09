@@ -3,21 +3,37 @@ import RecipeCard from "./RecipeCard";
 import NewRecipeForm from "./NewRecipeForm";
 import { useOutletContext } from "react-router-dom";
 
+interface Recipe {
+    id: number
+    name: string
+    image: string
+    caloriesPerServing: number
+    instructions: string
+    ingredients: string[]
+    cuisine: string
+    difficulty: string
+    mealType: string
+}
+
+interface OutletContext {
+  onAddFavorite: (recipe: Recipe) => void
+}
+
 function Recipes() {
-  const [userRecipes, setUserRecipes] = useState([]);
-  const { onAddFavorite } = useOutletContext();
+  const [userRecipes, setUserRecipes] = useState<Recipe[]>([])
+  const { onAddFavorite } = useOutletContext<OutletContext>()
 
   useEffect(() => {
     fetch("https://react-project-recipe-box-backend.onrender.com/recipes")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to retrieve saved recipes");
-        return res.json();
+        return res.json() as Promise<Recipe[]>;
       })
       .then(setUserRecipes)
       .catch(console.error);
   }, []);
 
-  function handleAddNewRecipe(newRecipe) {
+  function handleAddNewRecipe(newRecipe: Recipe) {
     fetch("https://react-project-recipe-box-backend.onrender.com/recipes", {
       method: "POST",
       headers: {
@@ -27,15 +43,17 @@ function Recipes() {
     })
       .then((res) => {
         if (!res.ok) throw new Error("Failed to save recipe");
-        return res.json();
+        return res.json() as Promise<Recipe>;
       })
       .then((savedRecipe) => {
-        setUserRecipes((currentRecipes) => [...currentRecipes, savedRecipe]);
+        setUserRecipes((currentRecipes) => [
+          ...currentRecipes, 
+          savedRecipe]);
       })
       .catch(console.error);
   }
 
-  function handleDeleteRecipe(id) {
+  function handleDeleteRecipe(id: number): void {
     fetch(
       `https://react-project-recipe-box-backend.onrender.com/recipes/${id}`,
       {

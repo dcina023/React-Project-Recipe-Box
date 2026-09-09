@@ -6,6 +6,7 @@ function Discover() {
   const [externalRecipes, setExternalRecipes] = useState([]);
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [selectedType, setSelectedType] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const { onAddFavorite } = useOutletContext();
 
@@ -18,6 +19,7 @@ function Discover() {
         .then((data) => setExternalRecipes(data.recipes))
         .catch(console.error);
     }, []);
+
   
   const difficulties = [
     ...new Set(externalRecipes.map((recipe) => recipe.difficulty)),
@@ -32,11 +34,22 @@ function Discover() {
     const matchesMealType =
       selectedType ? recipe.mealType.includes(selectedType) : true;
 
-    return matchesDifficulty && matchesMealType;
+    const displayedSearch = recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
+
+    return matchesDifficulty && matchesMealType && displayedSearch;
   });
 
   return (
     <div>
+       <label htmlFor="search">Search Recipes:</label>
+     <input
+       type="text"
+       id="searchTerm"
+       placeholder="Type a recipe name here..."
+       value={searchTerm}
+       onChange={(e) => setSearchTerm(e.target.value)}
+     />
+
       <label htmlFor="difficulty">Filter By Difficulty: </label>
       <select
         id="difficulty"

@@ -1,6 +1,26 @@
 import React from "react";
 
-function RecipeCard({ recipe, onAddFavorite, onDeleteRecipe }) {
+interface Recipe {
+  id: number;
+  name: string;
+  image: string;
+  caloriesPerServing: number;
+  cuisine: string;
+  difficulty: string;
+  ingredients: string[];
+  instructions: string[];
+}
+interface RecipeCardProps {
+  recipe: Recipe;
+  onAddFavorite?: (recipe: Recipe) => void;
+  onDeleteRecipe?: (id: number) => void;
+}
+
+function RecipeCard({ 
+  recipe, 
+  onAddFavorite, 
+  onDeleteRecipe,
+ }: RecipeCardProps) {
   return (
     <article>
       <h2>{recipe.name}</h2>
